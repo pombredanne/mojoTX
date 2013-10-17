@@ -8,11 +8,15 @@ if __name__ == "__main__":
     parser.add_argument("input_directory", type=str, nargs=1, help="Name of directory to parse")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-d", "--debug", help="launch interactive debugger before magic", action="store_true")
+    parser.add_argument("-u", "--unicode", help="Specify whether to use Unicode for initializing source directory", action="store_true")
 
     args=parser.parse_args()
-    SOURCEDIR = unicode(args.input_directory[0] )
     verbose = args.verbose
     debug   = args.debug
+    if args.unicode:
+        SOURCEDIR = unicode(args.input_directory[0] )
+    else:
+        SOURCEDIR = args.input_directory[0]
 
     all_files={}
 
